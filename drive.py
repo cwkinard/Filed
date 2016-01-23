@@ -6,6 +6,7 @@ import os
 import sys
 import logging
 import re
+import filerpath
 
 from apiclient import discovery
 from apiclient.http import MediaFileUpload
@@ -16,7 +17,7 @@ from oauth2client import tools
 
 SCOPES = 'https://www.googleapis.com/auth/drive'
 CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Drive API Python Quickstart'
+APPLICATION_NAME = 'Filed'
 
 
 def _CreateArgumentParser():
@@ -52,12 +53,8 @@ class Drive(object):
         Returns:
             Credentials, the obtained credential.
         """
-        home_dir = os.path.expanduser('~')
-        credential_dir = os.path.join(home_dir, '.credentials')
-        if not os.path.exists(credential_dir):
-            os.makedirs(credential_dir)
-        credential_path = os.path.join(credential_dir,
-                                       'drive-python-quickstart.json')
+        credential_path = os.path.join(filerpath.CRED_PATH,
+                                       'drive.json')
 
         store = oauth2client.file.Storage(credential_path)
         credentials = store.get()
