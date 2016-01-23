@@ -17,7 +17,7 @@ class Scraper:
 	
 	self._logger = logging.getLogger(__name__)
 	self._logger.setLevel(logging.DEBUG)
-	log_path = os.path.join(filerpath.TMP_PATH, 'tdbank.log')
+	log_path = os.path.join(filerpath.LOG_PATH, 'tdbank.log')
 	handler = logging.FileHandler(log_path)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)

@@ -12,3 +12,5 @@ ACCOUNTS_PATH = os.path.join(LIB_PATH, "accounts.json")
 TMP_PATH = os.path.join(LIB_PATH, "tmp")
 
 LOG_PATH = os.path.join(LIB_PATH, "logs")
+
+CRED_PATH = os.path.join(LIB_PATH, ".credentials")
