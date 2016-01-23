@@ -54,7 +54,8 @@ class Filer(object):
         """
 
         logger = logging.getLogger(__name__)
-	handler = logging.FileHandler('Filed.log')
+	log_path = os.path.join(filerpath.LOG_PATH, 'Filed.log')
+	handler = logging.FileHandler(log_path)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
@@ -89,7 +90,8 @@ class Filer(object):
 	"""
 
 	logger = logging.getLogger(__name__)
-        handler = logging.FileHandler('Filed.log')
+	log_path = os.path.join(filerpath.LOG_PATH, 'Filed.log')
+        handler = logging.FileHandler(log_path)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
