@@ -1,0 +1,36 @@
+{
+    "tdbank" : {
+       "richuser": {
+            "password": "mypassword",
+	    "qa": {
+		"What is the first name of your mother's mother?" : "bigugly",
+        	"What is your pet's name?" : "ralph",
+        	"What was the name of your grade school?" : "awesome school"
+	    },
+            "accounts": {
+                "checking": { 
+                    "web_id": "1",
+                    "drive_id": "checkingdriveid"
+                },
+                "savings": {
+                    "web_id": "2",
+                    "drive_id": "savingsdriveid"
+                }
+            }
+       },
+       "disabled": "false"
+    },
+    "adp" : {
+       "adpuser" : {
+            "password": "adppassword",
+            "qa": {},
+            "accounts": {
+                "primary": {
+                    "drive_id": "0sdfDkddfDEFEQXZEY1U4aEk"
+                }
+            }
+        },
+        "disabled": "true"
+    }
+
+}
