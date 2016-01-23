@@ -37,10 +37,12 @@ python Filed.py --logging_level DEBUG --noauth_local_webserver
 * Clean up and reorganize logging
 
 # Working Scrapers
-* TD Bank
-* ADP
-* Benefit Wallet
-* Pepco
+| Name | URL | Full History |
+| ---- | --- | ------------ |
+| TD Bank | tdbank.com | no |
+| ADP | ipay.adp.com | yes |
+| Benefit Wallet | mybenefitwallet.com | no |
+| Pepco | pepco.com | no |
 
 ## Very Close
 * Barclay
