@@ -40,9 +40,9 @@ python Filed.py --logging_level DEBUG --noauth_local_webserver
 * TD Bank
 * ADP
 * Benefit Wallet
+* Pepco
 
 ## Very Close
-* Pepco
 * Barclay
 * Vanguard
 
