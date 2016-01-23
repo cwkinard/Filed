@@ -13,7 +13,9 @@ Modular scraping framework for retrieving statements online and saving to cloud 
 
 # Run
 
+```
 python Filed.py --logging_level DEBUG --noauth_local_webserver
+```
 
 '--noauth_local_webserver' needs to only be run the first time for Google Drive setup
 '--logging_level' supports multiple modes (INFO, WARN, etc.)
@@ -38,12 +40,12 @@ python Filed.py --logging_level DEBUG --noauth_local_webserver
 * ADP
 * Benefit Wallet
 
-- Very Close -
+## Very Close
 * Pepco
 * Barclay
 * Vanguard
 
-- Blocked by Javascript
+## Blocked by Javascript
 * Fidelity
 * Verizon
 * Chase
