@@ -5,6 +5,7 @@ import logging
 import filerpath
 from datetime import datetime
 import os
+import urllib
 from scraperbase import ScraperBase
 
 LOGIN_PAGE = 'https://agateway.adp.com/siteminderagent/nocert/1452983272/smgetcred.scc?TYPE=16777217&REALM=-SM-iPay%20AG%20User%20[17%3a27%3a52%3a5835]&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME=-SM-GJhM6kK9dRSj%2f%2fJIOxL2bk7urD4vemiZfubVBGrLAGxU0tnw7leGxGsIKs2LWyPV&TARGET=-SM-http%3a%2f%2fipay%2eadp%2ecom%2fiPay%2fprivate%2findex%2ejsf'
@@ -13,7 +14,7 @@ LOGIN_PAGE = 'https://agateway.adp.com/siteminderagent/nocert/1452983272/smgetcr
 class Scraper(ScraperBase):
 
     def __init__(self, username, password, qa):
-	ScraperBase.__init__(self, username, password, qa)
+	ScraperBase.__init__(self, urllib.quote(username), urllib.quote(password), qa)
 
     def _login(self):
 
