@@ -3,6 +3,7 @@ import requests
 import logging
 import filerpath
 import os
+import re
 from oauth2client import tools
 
 
@@ -27,9 +28,12 @@ class ScraperBase(object):
     def __init__(self, username, password, qa):
         self.s = requests.session()
 
-        self._logger = logging.getLogger(__name__)
+	regex = re.compile('(?<=\')(.*)(?=\.)', re.MULTILINE)
+        log_name = re.search(regex, str(type(self))).group()
+
+        self._logger = logging.getLogger(log_name)
         self._logger.setLevel(getattr(logging, flags.logging_level))
-        log_path = os.path.join(filerpath.LOG_PATH, __name__ + '.log')
+        log_path = os.path.join(filerpath.LOG_PATH, log_name + '.log')
         handler = logging.FileHandler(log_path)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
