@@ -6,28 +6,16 @@ import filerpath
 from datetime import datetime
 import os
 import urllib
+from scraperbase import ScraperBase
 
 
 LOGIN_PAGE = 'https://www.barclaycardus.com'
 
 
-class Scraper:
+class Scraper(ScraperBase):
 
     def __init__(self, username, password, qa):
-	self.s = requests.session()
-	
-	self._logger = logging.getLogger(__name__)
-	self._logger.setLevel(logging.DEBUG)
-	handler = logging.FileHandler('barclay.log')
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
-        self._logger.addHandler(handler)	
-
-	self.username = username
-	self.password = password
-	self.qa = qa
-
-	self._login()
+	ScraperBase.__init__(self, username, password, qa)
 
     def _login(self):
 
@@ -109,17 +97,9 @@ class Scraper:
 	        file = self.s.get(statement_url)
 	        #self._logger.debug(self.res.text)
 
-	        # Create directory structure
-	        file_name = str(statement_date) + '.pdf'
-	        file_path = os.path.join(filerpath.TMP_PATH, file_name)
+		# Save statment
+		self._save(file, statement_date)
 
-	        self._logger.info("Downloaded statement '%s' ", file_name)
-
-	        # Save statement
-	        with open(file_path, "wb") as code:
-    		    code.write(file.content)
-
-	        self._logger.debug("Statement saved to '%s' ", file_path)
 	return
 	    
 

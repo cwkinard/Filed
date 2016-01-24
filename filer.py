@@ -4,6 +4,7 @@ import filerpath
 import json
 import os
 import drive
+from scraperbase import ScraperBase
 from lastpass import (
     Vault,
     LastPassIncorrectGoogleAuthenticatorCodeError
@@ -50,7 +51,7 @@ class Filer(object):
 
         """
         Dynamically loads all the scrapers in the 'scrapers' folder
-	with module constant 'LOGIN_PAGE'.
+	that contain 'Scraper' class inheriting from 'ScraperBase'.
         """
 
         logger = logging.getLogger(__name__)
@@ -72,13 +73,13 @@ class Filer(object):
                 logger.warning("Skipped scraper '%s' due to an error.", name,
                                exc_info=True)
             else:
-                if hasattr(scraper, 'LOGIN_PAGE'):
-                    logger.debug("Found scraper '%s' with login page: %s", name,
-                                 scraper.LOGIN_PAGE)
+                if hasattr(scraper, 'Scraper') and issubclass(scraper.Scraper, ScraperBase):
+                    logger.debug("Found scraper '%s'", name)
                     scrapers.append(scraper)
                 else:
                     logger.warning("Skipped scraper '%s' because it misses " +
-                                   "the LOGIN_PAGE constant.", name)
+                                   "the 'Scraper' class or it does not inherit " +
+				   "the 'ScraperBase' parent class", name)
 	logger.info("Scrapers loaded")
         return scrapers
     

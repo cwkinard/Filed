@@ -5,29 +5,15 @@ import logging
 import filerpath
 from datetime import datetime
 import os
-
+from scraperbase import ScraperBase
 
 LOGIN_PAGE = 'https://agateway.adp.com/siteminderagent/nocert/1452983272/smgetcred.scc?TYPE=16777217&REALM=-SM-iPay%20AG%20User%20[17%3a27%3a52%3a5835]&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME=-SM-GJhM6kK9dRSj%2f%2fJIOxL2bk7urD4vemiZfubVBGrLAGxU0tnw7leGxGsIKs2LWyPV&TARGET=-SM-http%3a%2f%2fipay%2eadp%2ecom%2fiPay%2fprivate%2findex%2ejsf'
 
 
-class Scraper:
+class Scraper(ScraperBase):
 
     def __init__(self, username, password, qa):
-	self.s = requests.session()
-	
-	self._logger = logging.getLogger(__name__)
-	self._logger.setLevel(logging.DEBUG)
-	log_path = os.path.join(filerpath.LOG_PATH, 'adp.log')
-	handler = logging.FileHandler(log_path)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
-        self._logger.addHandler(handler)	
-
-	self.username = username
-	self.password = password
-	self.qa = qa
-
-	self._login()
+	ScraperBase.__init__(self, username, password, qa)
 
     def _login(self):
 
@@ -109,17 +95,9 @@ class Scraper:
 
             file = self.s.get('https://ipay.adp.com' + statement_url)
 
-            # Create directory structure
-            file_name = str(statement_date) + '.pdf'
-            file_path = os.path.join(filerpath.TMP_PATH, file_name)
+	    # Save statement
+	    self._save(file, statement_date)
 
-            self._logger.info("Downloaded statement '%s' ", file_name)
-
-            # Save statement
-            with open(file_path, "wb") as code:
-                code.write(file.content)
-
-            self._logger.debug("Statement saved to '%s' ", file_path)
             row_count += 1
 
 	return False

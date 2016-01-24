@@ -6,29 +6,16 @@ import filerpath
 from datetime import datetime
 import os
 import calendar
+from scraperbase import ScraperBase
 
 
 LOGIN_PAGE = 'https://mybenefitwallet.com/hsa/auth/verifyuser'
 
 
-class Scraper:
+class Scraper(ScraperBase):
 
     def __init__(self, username, password, qa):
-	self.s = requests.session()
-	
-	self._logger = logging.getLogger(__name__)
-	self._logger.setLevel(logging.DEBUG)
-	log_path = os.path.join(filerpath.LOG_PATH, 'benefitwallet.log')
-	handler = logging.FileHandler(log_path)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
-        self._logger.addHandler(handler)	
-
-	self.username = username
-	self.password = password
-	self.qa = qa
-
-	self._login()
+	ScraperBase.__init__(self, username, password, qa)
 
     def _login(self):
 
@@ -120,21 +107,9 @@ class Scraper:
 	    headers = { 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'Accept-Encoding':'gzip, deflate', 'Content-Type':'application/x-www-form-urlencoded', 'Host':'mybenefitwallet.com', 'Origin':'https://gateway.hsamember.com', 'Referer':'https://gateway.hsamember.com/SingleSignOnWeb/Saml2Gateway?clientid=CYC', 'Upgrade-Insecure-Requests':'1', 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36' }
 
             file = self.s.post(token_page, data=data, headers=headers)
-	    #self._logger.info(data)
-	    #self._logger.info(file.text)
-	    #self._logger.info(file.headers)
-
-	    # Create directory structure
-	    file_name = str(statement_date) + '.pdf'
-	    file_path = os.path.join(filerpath.TMP_PATH, file_name)
-
-	    self._logger.info("Downloaded statement '%s' ", file_name)
 
 	    # Save statement
-	    with open(file_path, "wb") as code:
-    		code.write(file.content)
-
-	    self._logger.debug("Statement saved to '%s' ", file_path)
+	    self._save(file, statement_date)
 	
 	return
 	    

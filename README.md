@@ -28,7 +28,6 @@ python Filed.py --logging_level DEBUG --noauth_local_webserver
 
 ## To-Do
 
-* Create parent scraper class to remove repeated logic (like saving statement to disc)
 * Refactor account json file and loop logic for cleanliness
 * Complete scheduling functionality
 * Add complete statement history pull to scraper logic
