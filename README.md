@@ -5,7 +5,7 @@ Modular scraping framework for retrieving statements online and saving to cloud 
 
 ## Setup
 
-1. Download any/all dependencies. 
+1. Download dependencies using requirements.txt: ``pip install -r requirements.txt`` 
 2. Edit 'accounts.json' file with your accounts
 3. Turn on Google Drive API as instructed here (and add created 'client_secret.json' to project root):
    https://developers.google.com/drive/v3/web/quickstart/python
