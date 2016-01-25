@@ -42,12 +42,12 @@ python Filed.py --logging_level DEBUG --noauth_local_webserver
 | ADP | ipay.adp.com | yes |
 | Benefit Wallet | mybenefitwallet.com | no |
 | Pepco | pepco.com | no |
+| Barclaycard | barclaycardus.com | maybe |
 
 ## Very Close
-* Barclay
 * Vanguard
 
-## Blocked by Javascript
-* Fidelity
-* Verizon
-* Chase
+## Blocked
+* Fidelity - statements use CSS print selectors
+* Verizon  - javascript
+* Chase    - javascript generated key
