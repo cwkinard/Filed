@@ -43,11 +43,9 @@ python Filed.py --logging_level DEBUG --noauth_local_webserver
 | Benefit Wallet | mybenefitwallet.com | no |
 | Pepco | pepco.com | no |
 | Barclaycard | barclaycardus.com | maybe |
+| Vanguard | personal.vanguard.com | yes |
 
-## Very Close
-* Vanguard
-
-## Blocked
+## Working On
 * Fidelity - statements use CSS print selectors
 * Verizon  - javascript
 * Chase    - javascript generated key
