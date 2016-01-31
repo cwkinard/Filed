@@ -28,10 +28,19 @@ class Filed(object):
         self._logger = logging.getLogger(__name__)
 	self._logger.setLevel(getattr(logging, flags.logging_level))
 	log_path = os.path.join(filerpath.LOG_PATH, 'Filed.log')
-	handler = logging.FileHandler(log_path)
+        # Create file handler to log to file
+        fh = logging.FileHandler(log_path)
+        fh.setLevel(getattr(logging, flags.logging_level))
+        # Create console handler for stdout
+        ch = logging.StreamHandler()
+        ch.setLevel(getattr(logging, flags.logging_level))
+        # Create formatter and add it to the handlers
 	formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-	handler.setFormatter(formatter)
-	self._logger.addHandler(handler)
+	fh.setFormatter(formatter)
+        ch.setFormatter(formatter)
+        # Add handlers to logger
+	self._logger.addHandler(fh)
+        self._logger.addHandler(ch)
 
 	self.f = filer.Filer()
 

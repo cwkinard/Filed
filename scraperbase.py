@@ -30,10 +30,9 @@ class ScraperBase(object):
 
 	regex = re.compile('(?<=\')(.*)(?=\.)', re.MULTILINE)
         log_name = re.search(regex, str(type(self))).group()
-
         self._logger = logging.getLogger(log_name)
         self._logger.setLevel(getattr(logging, flags.logging_level))
-        log_path = os.path.join(filerpath.LOG_PATH, log_name + '.log')
+        log_path = os.path.join(filerpath.LOG_PATH, 'Filed.log')
         handler = logging.FileHandler(log_path)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)

@@ -129,7 +129,7 @@ class Filer(object):
 
 		self._logger.debug("Executing scraper '%s' for login '%s'",
                                    scraper.__name__, login)
-		# Instantiate scraper for this login (and log in)
+		# Instantiate scraper for this login (and logs in)
                 s = scraper.Scraper(login, self.accounts[site][login]['password'],
                                     self.accounts[site][login]['qa'])
 		
