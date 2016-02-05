@@ -152,7 +152,7 @@ class Filer(object):
 			    self._logger.debug("Scrape by scraper '%s' completed",
                                        scraper.__name__)
                     	    self._logger.info("Found %d new statements to file", len([name for \
-				name in os.listdir(filerpath.TMP_PATH) if os.path.isfile(name)]))
+				name in os.listdir(filerpath.TMP_PATH)]))
                     	    
 			    # Add files to drive
 			    for file in os.listdir(filerpath.TMP_PATH):
