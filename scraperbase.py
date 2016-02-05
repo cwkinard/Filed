@@ -32,11 +32,12 @@ class ScraperBase(object):
         log_name = re.search(regex, str(type(self))).group()
         self._logger = logging.getLogger(log_name)
         self._logger.setLevel(getattr(logging, flags.logging_level))
-        log_path = os.path.join(filerpath.LOG_PATH, 'Filed.log')
-        handler = logging.FileHandler(log_path)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
-        self._logger.addHandler(handler)
+	if not self._logger.handlers:
+            log_path = os.path.join(filerpath.LOG_PATH, 'Filed.log')
+            handler = logging.FileHandler(log_path)
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            handler.setFormatter(formatter)
+            self._logger.addHandler(handler)
 
         self.username = username
         self.password = password

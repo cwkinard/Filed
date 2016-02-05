@@ -143,7 +143,7 @@ class Filer(object):
 		    # Check if this account has new documents
 		    if s.hasNew(self.accounts[site][login]["accounts"][account], date):
 			try:
-			    self._logger.debug("New statement\(s\) found. Downloading...")
+			    self._logger.debug("New statement(s) found. Downloading...")
 			    s.scrape(self.accounts[site][login]["accounts"][account], date)
 			except:
 			    self._logger.error('Failed to execute scraper',
