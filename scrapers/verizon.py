@@ -61,6 +61,8 @@ class Scraper(ScraperBase):
     	    c = {cookie['name']: cookie['value']}
     	    self.s.cookies.update(c)	
 
+	browser.close()
+
 	self._logger.info("Logged In")
     
     def _get_statement_rows(self):
