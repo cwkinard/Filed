@@ -22,6 +22,11 @@ python Filed.py --logging_level DEBUG --noauth_local_webserver
 
 '--logging_level' supports multiple modes (INFO, WARN, etc.)
 
+```
+python Filed.py -s 12:01
+```
+Schedules Filed to run every day at 12:01 PM
+
 ## Notes
 
 * Most scrapers do not have paging logic to pull full account history. Assumes that most accounts have recent statements in Google Drive (the ADP scraper currently does support full account history)
@@ -31,7 +36,6 @@ python Filed.py --logging_level DEBUG --noauth_local_webserver
 ## To-Do
 
 * Refactor account json file and loop logic for cleanliness
-* Complete scheduling functionality
 * Add complete statement history pull to scraper logic
 * Abstract Google Drive from single source cloud provider 
 * Finish LastPass vault integration
