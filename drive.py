@@ -20,24 +20,12 @@ CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Filed'
 
 
-def _CreateArgumentParser():
-    try:
-        import argparse
-    except ImportError:
-        return None
-    parser = argparse.ArgumentParser(parents=[tools.argparser], add_help=False)
-    return parser
-
-# argparser is an ArgumentParser that contains command-line options expected
-# by tools.run(). Pass it in as part of the 'parents' argument to your own
-# ArgumentParser.
-argparser = _CreateArgumentParser()
-flags = argparser.parse_args()
 
 class Drive(object):
-    def __init__(self):
+    def __init__(self, flags):
 
 	self._logger = logging.getLogger(__name__)
+	self.flags = flags
 
         self.credentials = self.get_credentials()
         self.http = self.credentials.authorize(httplib2.Http())    
@@ -62,7 +50,7 @@ class Drive(object):
             flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
             flow.user_agent = APPLICATION_NAME
             #if flags:
-            credentials = tools.run_flow(flow, store, flags)
+            credentials = tools.run_flow(flow, store, self.flags)
             #else: # Needed only for compatibility with Python 2.6
                 #credentials = tools.run(flow, store)
             print('Storing credentials to ' + credential_path)

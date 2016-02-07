@@ -13,9 +13,16 @@ def _CreateArgumentParser():
         import argparse
     except ImportError:
         return None
-    parser = argparse.ArgumentParser(description='Filed - Get Organized', parents=[filer.argparser])
+    parser = argparse.ArgumentParser(description='Filed - Get Organized')
     parser.add_argument('--daemon', action='store_true',
                     help='Run Filed as a service')
+    parser.add_argument('--noauth_local_webserver', action='store_true',
+                        default=True, help='Do not run a local web server.')
+    parser.add_argument(
+        '--logging_level', default='ERROR',
+        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
+        help='Set the logging level of detail.')
+
     return parser
 
 # argparser is an ArgumentParser that contains command-line options
@@ -42,7 +49,7 @@ class Filed(object):
 	self._logger.addHandler(fh)
         self._logger.addHandler(ch)
 
-	self.f = filer.Filer()
+	self.f = filer.Filer(flags)
 
     def run(self):
         self.f.file()

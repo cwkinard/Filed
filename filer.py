@@ -11,19 +11,10 @@ from lastpass import (
 )
 
 
-def _CreateArgumentParser():
-    try:
-        import argparse
-    except ImportError:
-        return None
-    parser = argparse.ArgumentParser(parents=[drive.argparser], add_help=False)
-    return parser
-
-argparser = _CreateArgumentParser()
 
 class Filer(object):
 
-    def __init__(self):
+    def __init__(self, flags):
 	"""        
 	Instantiates a new Filer object, which scrapes each website
 	defined as a scraper for new documents and files them 
@@ -34,7 +25,7 @@ class Filer(object):
 	self._logger = logging.getLogger(__name__)
 	self.scrapers = self.get_scrapers()
 	#self.vault = self.get_vault()
-        self.drive = drive.Drive()
+        self.drive = drive.Drive(flags)
 	
 	self._logger.info("Initiating Filer")
 	self._logger.info("Loading Accounts from %s", filerpath.ACCOUNTS_PATH)
