@@ -7,28 +7,22 @@ import time
 import sys
 import filer
 import filerpath
+from oauth2client import tools
 
 def _CreateArgumentParser():
     try:
         import argparse
     except ImportError:
         return None
-    parser = argparse.ArgumentParser(description='Filed - Get Organized')
+    parser = argparse.ArgumentParser(description='Filed - Get Organized', parents=[tools.argparser])
     parser.add_argument('--daemon', action='store_true',
                     help='Run Filed as a service')
-    parser.add_argument('--noauth_local_webserver', action='store_true',
-                        default=True, help='Do not run a local web server.')
-    parser.add_argument(
-        '--logging_level', default='ERROR',
-        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
-        help='Set the logging level of detail.')
-
+   
     return parser
 
 # argparser is an ArgumentParser that contains command-line options
 argparser = _CreateArgumentParser()
 flags = argparser.parse_args()
-
 
 class Filed(object):
     def __init__(self):

@@ -7,25 +7,11 @@ import re
 from oauth2client import tools
 
 
-def _CreateArgumentParser():
-    try:
-        import argparse
-    except ImportError:
-        return None
-    parser = argparse.ArgumentParser(parents=[tools.argparser], add_help=False)
-    return parser
-
-# argparser is an ArgumentParser that contains command-line options expected
-# by tools.run(). Pass it in as part of the 'parents' argument to your own
-# ArgumentParser.
-argparser = _CreateArgumentParser()
-flags = argparser.parse_args()
-
 
 class ScraperBase(object):
     __metaclass__ = abc.ABCMeta    
 
-    def __init__(self, username, password, qa):
+    def __init__(self, username, password, qa, flags):
         self.s = requests.session()
 
 	regex = re.compile('(?<=\')(.*)(?=\.)', re.MULTILINE)
@@ -42,7 +28,8 @@ class ScraperBase(object):
         self.username = username
         self.password = password
         self.qa = qa
-
+	self.flags = flags
+	
         self._login()
 
     @abc.abstractmethod

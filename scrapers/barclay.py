@@ -14,8 +14,8 @@ LOGIN_PAGE = 'https://www.barclaycardus.com'
 
 class Scraper(ScraperBase):
 
-    def __init__(self, username, password, qa):
-	ScraperBase.__init__(self, username, password, qa)
+    def __init__(self, *args, **kwargs):
+        super(Scraper, self).__init__(*args, **kwargs)
 
     def _login(self):
 

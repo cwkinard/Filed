@@ -26,6 +26,7 @@ class Filer(object):
 	self.scrapers = self.get_scrapers()
 	#self.vault = self.get_vault()
         self.drive = drive.Drive(flags)
+	self.flags = flags
 	
 	self._logger.info("Initiating Filer")
 	self._logger.info("Loading Accounts from %s", filerpath.ACCOUNTS_PATH)
@@ -122,7 +123,7 @@ class Filer(object):
                                    scraper.__name__, login)
 		# Instantiate scraper for this login (and logs in)
                 s = scraper.Scraper(login, self.accounts[site][login]['password'],
-                                    self.accounts[site][login]['qa'])
+                                    self.accounts[site][login]['qa'], self.flags)
 		
 		# Account Loop (ex. 'checking')
 		for account in self.accounts[site][login]["accounts"]:
