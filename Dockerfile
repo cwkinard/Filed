@@ -30,5 +30,6 @@ COPY .credentials .credentials
 RUN pip install -r requirements.txt
 
 # Do the magic
-ENTRYPOINT python Filed.py --logging_level DEBUG -s 
+ENTRYPOINT ["python", "Filed.py"]
+CMD --logging_level DEBUG
 
