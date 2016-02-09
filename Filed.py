@@ -72,7 +72,7 @@ if __name__ == "__main__":
     except Exception:
         logger.error("Error occured!", exc_info=True)
         sys.exit(1)
-    print (flags.schedule)
+    
     if flags.schedule:	
 	schedule.every().day.at(flags.schedule).do(app.run)
 	logger.info("Scheduled: " + schedule.next_run().strftime("%Y-%m-%d %I:%M %p"))
