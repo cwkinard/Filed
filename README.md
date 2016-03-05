@@ -51,6 +51,7 @@ Schedules Filed to run every day at 12:01 PM
 | Barclaycard | barclaycardus.com | maybe |
 | Vanguard | personal.vanguard.com | yes |
 | Verizon | verizonwireless.com | yes |
+| Prosper | prosper.com | maybe |
 
 ## Working On
 * Fidelity - statements use CSS print selectors
